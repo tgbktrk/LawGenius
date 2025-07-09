@@ -1,0 +1,103 @@
+<div class="profile-card">
+  <h2>{{ 'profile.title' | translate }}</h2>
+
+  <!-- Ortak Kullanıcı Bilgileri -->
+  <div class="profile-group">
+    <label>{{ 'profile.name' | translate }}</label>
+    <input type="text" [(ngModel)]="editableUser.name" [disabled]="!isEditing" />
+  </div>
+
+  <div class="profile-group">
+    <label>{{ 'profile.email' | translate }}</label>
+    <input type="email" [(ngModel)]="editableUser.email" [disabled]="!isEditing" />
+  </div>
+
+  <div class="profile-group">
+    <label>{{ 'profile.phone' | translate }}</label>
+    <input type="text" [(ngModel)]="editableUser.phone" [disabled]="!isEditing" />
+  </div>
+
+  <div class="profile-group">
+    <label>{{ 'profile.birthDate' | translate }}</label>
+    <input type="date" [(ngModel)]="editableUser.birthDate" [disabled]="!isEditing" [max]="today"/>
+  </div>
+
+  <div class="profile-group">
+    <label>{{ 'profile.gender' | translate }}</label>
+    <select [(ngModel)]="editableUser.gender" [disabled]="!isEditing">
+      <option [value]="'female'">{{ 'register.gender_female' | translate }}</option>
+      <option [value]="'male'">{{ 'register.gender_male'   | translate }}</option>
+    </select>
+  </div>
+
+  <!-- Avukat Bilgileri -->
+  <ng-container *ngIf="user.role === 'lawyer'">
+    <div class="profile-group">
+      <label>{{ 'profile.bar_association' | translate }}</label>
+      <input type="text" [(ngModel)]="editableLawyer.barAssociation" [disabled]="!isEditing" />
+    </div>
+
+    <div class="profile-group">
+      <label>{{ 'profile.expertise_areas' | translate }}</label>
+      <input type="text" [value]="translatedExpertiseAreas" disabled />
+      <!-- Bu alanı şimdilik düzenlemeye kapalı bıraktım. -->
+    </div>
+
+    <div class="profile-group">
+      <label>{{ 'profile.experience_years' | translate }}</label>
+      <input type="number" min="0" [(ngModel)]="editableLawyer.experienceYears" [disabled]="!isEditing" />
+    </div>
+
+    <div class="profile-group hours-group">
+      <label>{{ 'profile.available_hours' | translate }}</label>
+      <div class="hours-inputs">
+        <!-- Başlangıç saati -->
+        <input
+          type="time"
+          [(ngModel)]="editableLawyer.availableStart"
+          [disabled]="!isEditing"
+        />
+        <span class="separator">–</span>
+        <!-- Bitiş saati -->
+        <input
+          type="time"
+          [(ngModel)]="editableLawyer.availableEnd"
+          [disabled]="!isEditing"
+        />
+      </div>
+    </div>
+
+    <div class="profile-group">
+      <label>{{ 'profile.price_range' | translate }}</label>
+      <input type="text" [(ngModel)]="editableLawyer.priceRange" [disabled]="!isEditing" />
+    </div>
+  </ng-container>
+
+  <div class="button-group">
+    <button *ngIf="!isEditing" (click)="enableEdit()">
+      ✏️ {{ 'profile.edit' | translate }}
+    </button>
+    <button *ngIf="isEditing" (click)="saveChanges()">
+      💾 {{ 'profile.save' | translate }}
+    </button>
+    <button *ngIf="isEditing" (click)="cancelEdit()">
+      ❌ {{ 'profile.cancel' | translate }}
+    </button>
+  </div>
+
+  <button class="delete-account" (click)="onDeleteAccount()">
+    🗑️ {{ 'profile.delete_account' | translate }}
+  </button>
+
+  <div *ngIf="showDeleteConfirm" class="delete-confirm-overlay">
+    <div class="delete-confirm-box">
+      <p>{{ 'profile.confirm_delete' | translate }}</p>
+      <button class="btn-yes" (click)="confirmDelete()">
+        {{ 'common.yes' | translate }}
+      </button>
+      <button class="btn-no"  (click)="cancelDelete()">
+        {{ 'common.no'  | translate }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+.welcome-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.welcome-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6e6e6e;
+  height: 100%;
+}
+
+.welcome-circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.welcome-image {
+  width: 100%;
+  height: auto;
+}
+
+.welcome-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  background-color: #fff;
+}
+
+.welcome-right p {
+  font-size: 1rem;
+  color: #666666;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1px;
+  color: #000;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #454545;
+  margin-bottom: 30px;
+}
+
+.chat-now-button {
+  background: linear-gradient(135deg, #ffffff, #f1f1f1);
+  color: #000;
+  border: 1px solid #888;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  cursor: pointer; /* 👈 Bu satır eksikti */
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.chat-now-button:hover {
+  background: linear-gradient(135deg, #e0e0e0, #d6d6d6);
+  transform: scale(1.03);
+}

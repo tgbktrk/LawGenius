@@ -1,0 +1,166 @@
+.register-lawyer-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.register-lawyer-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #000;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+input,
+textarea,
+select,
+button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #000;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: red;
+  background-color: #fff5f5;
+}
+
+button[type="submit"],
+button[type="button"] {
+  background-color: #000;
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #6e6e6e;
+  transform: scale(1.02);
+}
+
+button[type="button"] {
+  width: auto;
+  padding: 6px 12px;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  align-self: flex-start;
+}
+
+.success {
+  margin-top: 20px;
+  color: green;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error {
+  margin-top: 8px;
+  color: red;
+  font-weight: 600;
+  text-align: left; /* ✅ Solda hizalanması için */
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .register-lawyer-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .register-lawyer-container h2 {
+    font-size: 1.5rem;
+  }
+
+  button[type="button"] {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.custom-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 1rem;
+  color: #333;
+
+  input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    font-size: 0.95rem;
+    color: #333;
+    cursor: pointer;
+  }
+
+  input[type="file"]::file-selector-button {
+    background-color: #eee;
+    border: none;
+    padding: 8px 14px;
+    margin-right: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #000;
+  }
+
+  input[type="file"]::file-selector-button:hover {
+    background-color: #ddd;
+  }
+
+  .error-text {
+    color: red;
+    font-size: 0.85rem;
+  }
+}
+
+.location-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+small.error,
+small.ng-error,
+small[ng-reflect-ng-if] {
+  color: red;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: -8px;
+  margin-bottom: 5px;
+  display: block;
+}

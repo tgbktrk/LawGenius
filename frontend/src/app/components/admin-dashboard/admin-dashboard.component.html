@@ -1,0 +1,41 @@
+<div class="admin-container">
+
+  <!-- Sekmeler (Kullanıcılar, Avukatlar, Onay Bekleyenler) -->
+  <nav class="admin-tabs">
+    <button 
+      [class.active]="selectedTab === 'users'" 
+      (click)="selectedTab = 'users'">
+      👤 Kullanıcılar
+    </button>
+
+    <button 
+      [class.active]="selectedTab === 'lawyers'" 
+      (click)="selectedTab = 'lawyers'">
+      ⚖️ Avukatlar
+    </button>
+
+    <button 
+      [class.active]="selectedTab === 'pending'" 
+      (click)="selectedTab = 'pending'">
+      🕒 Onay Bekleyenler
+    </button>
+  </nav>
+
+  <!-- Seçilen sekmeye göre içerik gösterimi -->
+  <div class="tab-content">
+    <div *ngIf="selectedTab === 'users'">
+      <!-- Kullanıcı listesi bileşeni -->
+      <app-user-list></app-user-list>
+    </div>
+
+    <div *ngIf="selectedTab === 'lawyers'">
+      <!-- Onaylı avukatlar listesi bileşeni -->
+      <app-lawyer-list></app-lawyer-list>
+    </div>
+
+    <div *ngIf="selectedTab === 'pending'">
+      <!-- Onay bekleyen avukatlar listesi bileşeni -->
+      <app-lawyer-pending-list></app-lawyer-pending-list>
+    </div>
+  </div>
+</div>

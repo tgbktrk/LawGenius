@@ -1,0 +1,60 @@
+<div class="chatbot-wrapper">
+
+  <!-- Sol panel: Giriş yapılmışsa geçmiş konuşmaları göster -->
+  <div class="chat-history-sidebar" *ngIf="isLoggedIn">
+    <app-chatbot-history></app-chatbot-history>
+  </div>
+
+  <!-- Sağ panel: Chat arayüzü -->
+  <div class="chat-container">
+
+    <!-- Dil ve model seçimi -->
+    <div class="country-selector">
+      <select [(ngModel)]="selectedCountry" (change)="updateBotGreeting()">
+        <option value="TR">{{ 'chat.country.TR' | translate }}</option>
+        <option value="US">{{ 'chat.country.US' | translate }}</option>
+      </select>
+      <select [(ngModel)]="selectedModel">
+        <option *ngFor="let m of modelOptions" [value]="m">
+          {{ m === 'OpenAI' ? 'OpenAI' : 'Mistral AI' }}
+        </option>
+      </select>
+      <span class="hint">{{ 'chat.hint' | translate }}</span>
+    </div>
+
+    <!-- Chat mesajları -->
+    <div class="chat-box" #chatBox>
+      <div *ngFor="let message of messages"
+           class="chat-message"
+           [ngClass]="message.sender">
+        {{ message.text }}
+      </div>
+
+      <!-- Yüklenme animasyonu -->
+      <div class="chat-message bot" *ngIf="isLoading">
+        <div class="dot-loader"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+
+    <!-- Mesaj gönderme alanı -->
+    <div class="chat-input-container">
+      <input
+        [(ngModel)]="userInput"
+        (keyup.enter)="sendMessage()"
+        [placeholder]="
+          selectedCountry==='US'
+            ? ('chat.unsupported_country_placeholder' | translate)
+            : ('chat.placeholder' | translate)
+        "
+        [disabled]="selectedCountry==='US'"
+        class="chat-input"
+      />
+      <button
+        (click)="sendMessage()"
+        [disabled]="!userInput.trim()||selectedCountry==='US'"
+        class="send-button">
+        {{ 'chat.sendButton' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

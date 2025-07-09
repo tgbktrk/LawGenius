@@ -1,0 +1,274 @@
+<div class="register-lawyer-container">
+  <h2>{{ 'lawyer_apply.title' | translate }}</h2>
+
+  <form [formGroup]="lawyerForm" (ngSubmit)="onSubmit()">
+    <!-- Name -->
+    <label for="name">{{ 'lawyer_apply.name' | translate }}</label>
+    <input id="name" formControlName="name" type="text" />
+    <div *ngIf="lawyerForm.get('name')?.touched && lawyerForm.get('name')?.invalid">
+      <small *ngIf="lawyerForm.get('name')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+    </div>
+
+    <!-- Email -->
+    <label for="email">{{ 'lawyer_apply.email' | translate }}</label>
+    <input id="email" formControlName="email" type="email" />
+    <div *ngIf="lawyerForm.get('email')?.touched && lawyerForm.get('email')?.invalid">
+      <small *ngIf="lawyerForm.get('email')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+      <small *ngIf="lawyerForm.get('email')?.errors?.['email']" class="error">{{ 'form.error.invalid_email' | translate }}</small>
+    </div>
+
+    <label for="phone">{{ 'lawyer_apply.phone' | translate }}</label>
+    <input id="phone" formControlName="phone" type="tel" placeholder="+90 5XX XXX XXXX"/>
+    <div *ngIf="lawyerForm.get('phone')?.touched && lawyerForm.get('phone')?.invalid">
+      <small *ngIf="lawyerForm.get('phone')?.errors?.['required']" class="error">
+        {{ 'form.error.required' | translate }}
+      </small>
+      <small *ngIf="lawyerForm.get('phone')?.errors?.['pattern']" class="error">
+        {{ 'form.error.invalid_phone' | translate }}
+      </small>
+    </div>
+
+    <!-- Birth Date -->
+    <label for="birthDate">{{ 'lawyer_apply.birth_date' | translate }}</label>
+    <input id="birthDate" formControlName="birthDate" type="date" />
+    <div *ngIf="lawyerForm.get('birthDate')?.touched && lawyerForm.get('birthDate')?.invalid">
+      <small *ngIf="lawyerForm.get('birthDate')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+    </div>
+
+    <!-- Gender -->
+    <label for="gender">{{ 'lawyer_apply.gender' | translate }}</label>
+    <select id="gender" formControlName="gender">
+      <option value="" disabled>{{ 'lawyer_apply.select_gender' | translate }}</option>
+      <option value="female">{{ 'lawyer_apply.gender_female' | translate }}</option>
+      <option value="male">{{ 'lawyer_apply.gender_male' | translate }}</option>
+    </select>
+    <div *ngIf="lawyerForm.get('gender')?.touched && lawyerForm.get('gender')?.invalid">
+      <small *ngIf="lawyerForm.get('gender')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+    </div>
+
+    <!-- Password -->
+    <label for="password">{{ 'lawyer_apply.password' | translate }}</label>
+    <input id="password" formControlName="password" type="password" />
+    <div *ngIf="lawyerForm.get('password')?.touched && lawyerForm.get('password')?.invalid">
+      <small *ngIf="lawyerForm.get('password')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+      <small *ngIf="lawyerForm.get('password')?.errors?.['minlength']" class="error">{{ 'form.error.minlength' | translate }}</small>
+    </div>
+
+    <!-- License Number -->
+    <label for="licenseNumber">{{ 'lawyer_apply.license_number' | translate }}</label>
+    <input id="licenseNumber" formControlName="licenseNumber" type="text" />
+    <div *ngIf="lawyerForm.get('licenseNumber')?.touched && lawyerForm.get('licenseNumber')?.invalid">
+      <small *ngIf="lawyerForm.get('licenseNumber')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+    </div>
+
+    <!-- Bar Association -->
+    <label for="barAssociation">{{ 'lawyer_apply.bar_association' | translate }}</label>
+    <select formControlName="barAssociation" id="barAssociation" required>
+      <option value="" disabled selected>{{ 'lawyer_apply.select_bar' | translate }}</option>
+      <option *ngFor="let bar of barList" [value]="bar">{{ bar }}</option>
+    </select>
+    <div *ngIf="lawyerForm.get('barAssociation')?.touched && lawyerForm.get('barAssociation')?.invalid">
+      <small *ngIf="lawyerForm.get('barAssociation')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+    </div>
+
+    <!-- Expertise -->
+    <label>{{ 'lawyer_apply.expertise' | translate }}</label>
+    <div formArrayName="expertiseAreas">
+      <div *ngFor="let ctrl of expertiseAreasControls; let i = index">
+        <select [formControlName]="i">
+          <option *ngFor="let key of suggestedAreaKeys" [value]="key">{{ key | translate }}</option>
+        </select>
+        <div *ngIf="ctrl.touched && ctrl.invalid">
+          <small *ngIf="ctrl.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+        </div>
+        <button type="button" (click)="removeExpertiseArea(i)">{{ 'lawyer_apply.remove_field' | translate }}</button>
+      </div>
+      <button type="button" (click)="addExpertiseArea()">{{ 'lawyer_apply.add_expertise' | translate }}</button>
+    </div>
+
+    <!-- Experience Years -->
+    <label>{{ 'lawyer_apply.experience_years' | translate }}</label>
+    <input type="number" formControlName="experienceYears" min="0" max="60" />
+    <div *ngIf="lawyerForm.get('experienceYears')?.touched && lawyerForm.get('experienceYears')?.invalid">
+      <small *ngIf="lawyerForm.get('experienceYears')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+      <small *ngIf="lawyerForm.get('experienceYears')?.errors?.['min']" class="error">{{ 'form.error.min_experience' | translate }}</small>
+      <small *ngIf="lawyerForm.get('experienceYears')?.errors?.['max']" class="error">{{ 'form.error.max_experience' | translate }}</small>
+      <small *ngIf="lawyerForm.get('experienceYears')?.errors?.['pattern']" class="error">{{ 'form.error.integer_only' | translate }}</small>
+    </div>
+
+    <!-- Biography -->
+    <label>{{ 'lawyer_apply.biography' | translate }}</label>
+    <textarea formControlName="biography"></textarea>
+    <div *ngIf="lawyerForm.get('biography')?.touched && lawyerForm.get('biography')?.invalid">
+      <small *ngIf="lawyerForm.get('biography')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+      <small *ngIf="lawyerForm.get('biography')?.errors?.['minlength']" class="error">{{ 'lawyer_apply.biography_minlength' | translate }}</small>
+      <small *ngIf="lawyerForm.get('biography')?.errors?.['maxlength']" class="error">{{ 'lawyer_apply.biography_maxlength' | translate }}</small>
+    </div>
+
+    <!-- Spoken Languages -->
+<label>{{ 'lawyer_apply.languages' | translate }}</label>
+<select formControlName="languages" multiple>
+  <option *ngFor="let lang of SUPPORTED_LANGUAGES" [value]="lang">{{ lang }}</option>
+</select>
+
+<div *ngIf="lawyerForm.get('languages')?.touched && lawyerForm.get('languages')?.invalid">
+  <small class="error">{{ 'lawyer_apply.languages_required' | translate }}</small>
+</div>
+
+<!-- Gün seçim başlığı -->
+<label>{{ 'lawyer_apply.available_days' | translate }}</label>
+
+<!-- Gün seçim kutuları -->
+<div class="weekdays">
+  <label *ngFor="let day of weekDays">
+    <input
+      type="checkbox"
+      [value]="day"
+      (change)="toggleDay(day)"
+      [checked]="selectedDays.includes(day)"
+    />
+    {{ 'lawyer_apply.days.' + day | translate }}
+  </label>
+</div>
+
+<!-- Hata mesajı -->
+<div *ngIf="selectedDays.length === 0 && submitted">
+  <small class="error">{{ 'lawyer_apply.available_days_required' | translate }}</small>
+</div>
+
+<label>{{ 'lawyer_apply.available_start' | translate }}</label>
+<input type="time" formControlName="availableStart" />
+<div *ngIf="lawyerForm.get('availableStart')?.touched && lawyerForm.get('availableStart')?.invalid">
+  <small *ngIf="lawyerForm.get('availableStart')?.errors?.['required']" class="error">
+    {{ 'form.error.required' | translate }}
+  </small>
+</div>
+
+<label>{{ 'lawyer_apply.available_end' | translate }}</label>
+<input type="time" formControlName="availableEnd" />
+<div *ngIf="lawyerForm.get('availableEnd')?.touched && lawyerForm.get('availableEnd')?.invalid">
+  <small *ngIf="lawyerForm.get('availableEnd')?.errors?.['required']" class="error">
+    {{ 'form.error.required' | translate }}
+  </small>
+</div>
+
+<!-- Zaman aralığı kontrolü -->
+<div *ngIf="lawyerForm.errors?.['invalidTimeRange'] && (lawyerForm.get('availableStart')?.touched || lawyerForm.get('availableEnd')?.touched)">
+  <small class="error">{{ 'lawyer_apply.invalid_time_range' | translate }}</small>
+</div>
+
+
+    <!-- Location -->
+    <div formGroupName="location" class="location-group">
+      <label>{{ 'lawyer_apply.city' | translate }}</label>
+      <select formControlName="city">
+        <option value="" disabled>{{ 'lawyer_apply.select_city' | translate }}</option>
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+      </select>
+      <div *ngIf="lawyerForm.get('location.city')?.touched && lawyerForm.get('location.city')?.invalid">
+        <small *ngIf="lawyerForm.get('location.city')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+      </div>
+
+      <label>{{ 'lawyer_apply.district' | translate }}</label>
+      <select formControlName="district" [disabled]="!districts.length">
+        <option value="" disabled>{{ 'lawyer_apply.select_district' | translate }}</option>
+        <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+      </select>
+      <div *ngIf="lawyerForm.get('location.district')?.touched && lawyerForm.get('location.district')?.invalid">
+        <small *ngIf="lawyerForm.get('location.district')?.errors?.['required']" class="error">{{ 'form.error.required' | translate }}</small>
+      </div>
+    </div>
+
+<!-- Price -->
+<label>{{ 'lawyer_apply.price_range' | translate }}</label>
+<div style="display: flex; gap: 0.5rem;">
+  <input
+    type="number"
+    formControlName="priceMin"
+    placeholder="Min ₺"
+    min="0"
+  />
+  <input
+    type="number"
+    formControlName="priceMax"
+    placeholder="Max ₺"
+    min="0"
+  />
+</div>
+
+<!-- Min Price Validation -->
+<div *ngIf="lawyerForm.get('priceMin')?.touched && lawyerForm.get('priceMin')?.invalid">
+  <small *ngIf="lawyerForm.get('priceMin')?.errors?.['required']" class="error">
+    {{ 'form.error.required' | translate }}
+  </small>
+  <small *ngIf="lawyerForm.get('priceMin')?.errors?.['min']" class="error">
+    {{ 'lawyer_apply.price_min_invalid' | translate }}
+  </small>
+</div>
+
+<!-- Max Price Validation -->
+<div *ngIf="lawyerForm.get('priceMax')?.touched && lawyerForm.get('priceMax')?.invalid">
+  <small *ngIf="lawyerForm.get('priceMax')?.errors?.['required']" class="error">
+    {{ 'form.error.required' | translate }}
+  </small>
+  <small *ngIf="lawyerForm.get('priceMax')?.errors?.['min']" class="error">
+    {{ 'lawyer_apply.price_max_invalid' | translate }}
+  </small>
+</div>
+
+<!-- Cross-field Validation (min > max) -->
+<div *ngIf="lawyerForm.errors?.['invalidPriceRange'] && (lawyerForm.get('priceMin')?.touched || lawyerForm.get('priceMax')?.touched)">
+  <small class="error">{{ 'lawyer_apply.price_range_invalid' | translate }}</small>
+</div>
+
+    <!-- Profile Photo -->
+   <!-- Profile Photo -->
+<label for="profilePhoto">{{ 'lawyer_apply.profile_photo' | translate }}</label>
+<div class="custom-file-upload">
+  <input
+    id="profilePhoto"
+    type="file"
+    accept="image/jpeg,image/png"
+    (change)="onProfilePhotoSelected($event)"
+  />
+</div>
+
+<div
+  *ngIf="
+    lawyerForm.get('profilePhoto')?.touched &&
+    lawyerForm.get('profilePhoto')?.hasError('required')
+  "
+>
+  <small class="error">
+    {{ 'lawyer.profile_photo_required' | translate }}
+  </small>
+</div>
+
+<div
+  *ngIf="
+    lawyerForm.get('profilePhoto')?.touched &&
+    lawyerForm.get('profilePhoto')?.hasError('invalidFormat')
+  "
+>
+  <small class="error">
+    {{ 'lawyer_apply.invalid_photo_format' | translate }}
+  </small>
+</div>
+
+    <!-- Documents -->
+    <label for="documents">{{ 'lawyer_apply.documents' | translate }}</label>
+    <div class="custom-file-upload">
+      <input id="documents" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" (change)="onDocumentsSelected($event)" />
+    </div>
+    <div *ngIf="documentsLimitExceeded">
+      <small class="error">{{ 'lawyer_apply.documents_limit_error' | translate }}</small>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" [disabled]="lawyerForm.invalid">{{ 'lawyer_apply.submit' | translate }}</button>
+  </form>
+
+  <!-- Success & Error -->
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>

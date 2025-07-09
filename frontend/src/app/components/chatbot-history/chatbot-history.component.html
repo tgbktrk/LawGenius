@@ -1,0 +1,46 @@
+<!-- Chatbot geçmişi bileşeni ana kapsayıcı -->
+<div class="chatbot-history">
+  <div class="history-panel">
+    <!-- Başlık -->
+    <h2>{{ 'chat.history.title' | translate }}</h2>
+
+    <!-- Geçmiş yoksa gösterilecek mesaj ve yeni sohbet butonu -->
+    <div *ngIf="histories.length === 0" class="empty-history">
+      <p>{{ 'chat.history.no_history' | translate }}</p>
+      <button (click)="startChat()" class="btn-new-chat">
+        {{ 'chat.history.start_new' | translate }}
+      </button>
+    </div>
+
+    <!-- Geçmiş varsa yeni sohbet ve listeleme alanı -->
+    <div *ngIf="histories.length > 0" class="history-list">
+      <!-- Yeni sohbet başlatma butonu -->
+      <button (click)="startChat()" class="btn-new-chat">
+        {{ 'chat.history.new_chat' | translate }}
+      </button>
+
+      <!-- Geçmiş konuşmaları listele -->
+      <div class="history-scroll">
+        <ul>
+          <li *ngFor="let conv of histories"
+              (click)="startChat(conv._id)"
+              class="history-item">
+            <div class="history-content">
+              <p class="history-title">
+                {{ 'chat.history.chat_started_at' | translate }}
+              </p>
+              <p class="history-meta">
+                {{ conv.lastMessageAt | date:'short' }}
+              </p>
+            </div>
+            <!-- Silme butonu -->
+            <button class="btn-delete"
+                    (click)="deleteConversation(conv._id, $event)">
+              🗑️
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="login-card">
+  <h2>{{ 'login.welcome_again' | translate }}</h2>
+
+  <div *ngIf="errorMessage" class="error-box">
+    {{ errorMessage | translate }}
+  </div>
+
+  <div *ngIf="messageFromState" class="login-warning">
+    ⚠️ {{ messageFromState }}
+  </div>
+  
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="email">{{ 'login.email' | translate }}</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">{{ 'login.password' | translate }}</label>
+      <div class="password-wrapper">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+        <button type="button" class="eye-button" (click)="togglePasswordVisibility()">
+          <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+            <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5
+                    5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3
+                    3-1.34 3-3-1.34-3-3-3z"/>
+          </svg>
+          <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+            <path d="M12 6c-5 0-9 4-9 6s4 6 9 6 9-4 9-6-4-6-9-6zm0 10c-2.21 0-4-1.79-4-4
+                    0-.73.21-1.41.58-2l5.42 5.42c-.59.37-1.27.58-2 .58zm4-4c0 .73-.21 1.41-.58 2l-5.42-5.42c.59-.37
+                    1.27-.58 2-.58 2.21 0 4 1.79 4 4z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="forgot-password">
+      <a (click)="onForgotPassword()">{{ 'login.forgot_password' | translate }}</a>
+    </div>
+
+    <button type="submit" [disabled]="!loginForm.valid">{{ 'login.login_button' | translate }}</button>
+  </form>
+
+  <div class="form-footer">
+    <p>{{ 'login.no_account' | translate }} 
+      <a (click)="navigateToRegister()">{{ 'login.register' | translate }}</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="lawyer-detail-container" *ngIf="lawyer">
+  <div class="profile-photo" *ngIf="lawyer.profilePhoto">
+    <img [src]="getFullDocumentUrl(lawyer.profilePhoto)" alt="Profil Fotoğrafı" />
+  </div>
+
+  <h2>{{ lawyer.userId?.name }}</h2>
+
+  <ul class="info-list">
+    <li class="info-item">
+      <span class="icon">📧</span>
+      <span class="label">Email:</span>
+      <span class="value">{{ lawyer.userId?.email }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">📞</span>
+      <span class="label">Telefon:</span>
+      <span class="value">{{ lawyer.userId?.phone || '—' }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">🚻</span>
+      <span class="label">Cinsiyet:</span>
+      <span class="value">{{ lawyer.userId?.gender || 'Belirtilmemiş' }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">🎂</span>
+      <span class="label">Doğum Tarihi:</span>
+      <span class="value">{{ lawyer.userId?.birthDate | date:'longDate' }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">⚖️</span>
+      <span class="label">Baro:</span>
+      <span class="value">{{ lawyer.barAssociation }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">📄</span>
+      <span class="label">Ruhsat No:</span>
+      <span class="value">{{ lawyer.licenseNumber }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">🗓️</span>
+      <span class="label">Deneyim (Yıl):</span>
+      <span class="value">{{ lawyer.experienceYears }}</span>
+    </li>
+    <li class="info-item bio-item">
+      <span class="icon">📝</span>
+      <span class="label">Biyografi:</span>
+      <span class="value">{{ lawyer.biography }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">📅</span>
+      <span class="label">Günler:</span>
+      <span class="value">
+        <ng-container *ngFor="let d of lawyer.availableDays; let last=last">
+          {{ 'lawyer_apply.days.'+d | translate }}<span *ngIf="!last">, </span>
+        </ng-container>
+      </span>
+    </li>
+    <li class="info-item">
+      <span class="icon">⏰</span>
+      <span class="label">Saatler:</span>
+      <span class="value">{{ lawyer.availableStart }} - {{ lawyer.availableEnd }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">🌐</span>
+      <span class="label">Diller:</span>
+      <span class="value">
+        <ng-container *ngFor="let l of lawyer.languages; let last=last">
+          {{ l }}<span *ngIf="!last">, </span>
+        </ng-container>
+      </span>
+    </li>
+    <li class="info-item">
+      <span class="icon">📍</span>
+      <span class="label">Şehir/İlçe:</span>
+      <span class="value">{{ lawyer.location?.city }} / {{ lawyer.location?.district }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">💰</span>
+      <span class="label">Ücret Aralığı:</span>
+      <span class="value">{{ lawyer.priceRange }}</span>
+    </li>
+    <li class="info-item">
+      <span class="icon">🌟</span>
+      <span class="label">Premium Üye:</span>
+      <span class="value">
+        {{ lawyer.userId?.isPremium ? ('Evet' | translate) : ('Hayır' | translate) }}
+      </span>
+    </li>
+  </ul>
+
+  <div class="documents" *ngIf="lawyer.documents?.length">
+    <h3>Belgeler</h3>
+    <ul>
+      <li *ngFor="let doc of lawyer.documents">
+        <a [href]="getFullDocumentUrl(doc)" target="_blank">📄 {{ doc.split('/').pop() }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="action-row" *ngIf="isPending">
+    <button class="approve" (click)="approve(lawyer._id)">✅ Onayla</button>
+    <button class="reject"  (click)="reject(lawyer._id)">❌ Reddet</button>
+  </div>
+  <div class="action-row" *ngIf="!isPending">
+    <button class="delete"  (click)="delete(lawyer._id)">🗑️ Sil</button>
+  </div>
+</div>

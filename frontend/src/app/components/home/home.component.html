@@ -1,0 +1,101 @@
+<div class="home-container">
+  <!-- Giriş banner'ı (üst kısım görsel ve başlık) -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-visual">
+        <img
+          src="assets/images/banner.png"
+          alt="Legal balance and gavel"
+          class="hero-image"
+          loading="lazy"
+        />
+      </div>
+      <h1 class="hero-title">
+        {{ 'home.welcome_title' | translate }}
+      </h1>
+    </div>
+  </section>
+
+  <!-- Uygulama özellikleri bölümü -->
+  <section class="features">
+    <!-- Hukuki danışmanlık özelliği -->
+    <div class="feature-card">
+      <img
+        src="assets/images/legal_advice.png"
+        alt="Legal Advice Icon"
+        loading="lazy"
+      />
+      <h2>{{ 'home.legal_advice_title' | translate }}</h2>
+      <p>{{ 'home.legal_advice_description' | translate }}</p>
+      <a
+        role="button"
+        tabindex="0"
+        class="btn-feature"
+        (click)="navigateTo('/legal-advice')"
+        (keydown.enter)="navigateTo('/legal-advice')"
+      >
+        {{ 'home.learn_more' | translate }}
+      </a>
+    </div>
+
+    <!-- Chatbot yardım özelliği -->
+    <div class="feature-card">
+      <img
+        src="assets/images/chatbot_assistance.png"
+        alt="Chatbot Icon"
+        loading="lazy"
+      />
+      <h2>{{ 'home.chatbot_assistance_title' | translate }}</h2>
+      <p>{{ 'home.chatbot_assistance_description' | translate }}</p>
+      <a
+        role="button"
+        tabindex="0"
+        class="btn-feature"
+        (click)="navigateTo('/chatbot')"
+        (keydown.enter)="navigateTo('/chatbot')"
+      >
+        {{ 'home.chat_now' | translate }}
+      </a>
+    </div>
+
+    <!-- Avukat başvuru özelliği -->
+    <div class="feature-card">
+      <img
+        src="assets/images/lawyer_apply.png"
+        alt="Lawyer Icon"
+        loading="lazy"
+      />
+      <h2>{{ 'home.lawyer_title' | translate }}</h2>
+      <p>{{ 'home.lawyer_description' | translate }}</p>
+      <a
+        role="button"
+        tabindex="0"
+        class="btn-feature"
+        (click)="navigateTo('/lawyer-apply')"
+        (keydown.enter)="navigateTo('/lawyer-apply')"
+      >
+        {{ 'home.lawyer_apply' | translate }}
+      </a>
+    </div>
+
+    <!-- Premium üyelik özelliği -->
+    <div class="feature-card">
+      <img
+        src="assets/images/premium.png"
+        alt="Premium Icon"
+        loading="lazy"
+      />
+      <h2>{{ 'home.premium' | translate }}</h2>
+      <p>{{ 'home.premium_description' | translate }}</p>
+      <a
+        role="button"
+        tabindex="0"
+        class="btn-feature"
+        (click)="navigateTo('/premium')"
+        (keydown.enter)="navigateTo('/premium')"
+      >
+        {{ 'home.premium_button' | translate }}
+      </a>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,33 @@
+<div class="conversation-list">
+  <div class="inbox-wrapper">
+
+    <!-- Eğer konuşma listesi boşsa gösterilen durum -->
+    <div *ngIf="inbox.length === 0" class="empty-state">
+      Henüz konuşma yok.
+    </div>
+
+    <!-- Her bir konuşma kartı -->
+    <div
+      *ngFor="let conv of inbox"
+      class="conversation-card"
+      (click)="openConversation(conv._id)"
+      tabindex="0"
+    >
+      <div class="card-main">
+        <!-- Karşı tarafın adı veya boşsa tire -->
+        <p class="card-title">{{ conv.otherUser?.name || '—' }}</p>
+
+        <!-- Son mesaj içeriği veya yoksa varsayılan mesaj -->
+        <p class="card-snippet">
+          {{ conv.lastMessage || 'Henüz mesaj yok' }}
+        </p>
+      </div>
+
+      <!-- Mesaj tarihi (son mesaj varsa onu, yoksa oluşturulma tarihini gösterir) -->
+      <div class="card-time">
+        {{ (conv.lastMessageAt || conv.createdAt) | date: 'short' }}
+      </div>
+    </div>
+
+  </div>
+</div>

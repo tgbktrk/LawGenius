@@ -1,0 +1,117 @@
+.conversation-list {
+  // Sayfa genel yapısı ve arka plan
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 20px;
+  background-image: url('/assets/images/conversation_background.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  // Arka plana yarı saydam beyaz katman
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.8);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Konuşma kartlarını saran yapı
+  .inbox-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 200px);
+    margin: 40px auto 0;
+    background: transparent;
+    border-radius: 8px;
+    padding: 20px 40px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+
+    // Scrollbar stil ayarları
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+    }
+  }
+
+  // Konuşma yoksa gösterilen metin
+  .empty-state {
+    position: static;
+    transform: none;
+    z-index: 3;
+    font-size: 1.25rem;
+    color: #555;
+    text-align: center;
+  }
+
+  // Tekil konuşma kartı
+  .conversation-card {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 1rem auto;
+    width: 70%;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+
+    // Hover efekti: hafif yukarı çıkma ve gölge derinleşmesi
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    // Kartın sol tarafındaki içerik (isim ve son mesaj)
+    .card-main {
+      flex: 1;
+      overflow: hidden;
+
+      .card-title {
+        margin: 0 0 0.25rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #222;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .card-snippet {
+        margin: 0.4rem 0 0;
+        font-size: 1rem;
+        color: #444;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    // Kartın sağ tarafındaki tarih bilgisi
+    .card-time {
+      margin-left: 2rem;
+      font-size: 0.85rem;
+      color: #666;
+      white-space: nowrap;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<h3>Onaylanmış Avukatlar</h3>
+
+<div *ngIf="lawyers.length === 0" class="empty-state">
+  <p>Henüz onaylanmış avukat bulunmamaktadır.</p>
+</div>
+
+<div class="cards-grid lawyer-grid">
+  <div *ngFor="let lawyer of lawyers" class="card lawyer-card">
+    <p><strong>Ad:</strong> {{ lawyer.userId?.name }}</p>
+    <p><strong>Email:</strong> {{ lawyer.userId?.email }}</p>
+    <p><strong>Baro:</strong> {{ lawyer.barAssociation }}</p>
+    <p><strong>Uzmanlık:</strong>
+      <span *ngFor="let area of lawyer.expertiseAreas; let isLast = last">
+        {{ area | translate }}<span *ngIf="!isLast">, </span>
+      </span>
+    </p>
+
+    <div class="action-buttons">
+      <button class="detail" (click)="goToDetail(lawyer._id)">Detay</button>
+    </div>
+  </div>

@@ -1,0 +1,71 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<div class="header-container">
+  <div class="header-left">
+    <!-- Logo her zaman -->
+    <a (click)="navigateTo('/home')" class="logo-link">
+      <h1>LawGenius</h1>
+      <h1 *ngIf="showAdminLinks">🛠️ Admin Console</h1>
+      <h1 *ngIf="showLawyerLinks">⚖️ Lawyer Console</h1>
+    </a>
+
+    <a
+      *ngIf="showAdminLinks"
+      routerLink="/admin/dashboard"
+      class="nav-link console-link"
+    >
+      Panelim
+    </a>
+    <a
+      *ngIf="showLawyerLinks"
+      routerLink="/lawyer/conversations"
+      class="nav-link console-link"
+    >
+      Gelen Kutusu
+    </a>
+  </div>
+  <div class="header-right">
+    <div class="language-selector">
+      <select [(ngModel)]="selectedLang" (change)="switchLang(selectedLang)">
+        <option value="tr">🇹🇷 TR</option>
+        <option value="en">🇬🇧 EN</option>
+      </select>
+    </div>
+    <a (click)="navigateTo('/home')" class="nav-link">{{ 'navbar.home' | translate }}</a>
+    <a (click)="navigateTo('/chatbot')" class="nav-link">{{ 'navbar.chatbot' | translate }}</a>
+    <a (click)="navigateTo('/legal-advice')" class="nav-link">{{ 'navbar.legal_advice' | translate }}</a>
+    <!-- Eğer giriş yapılmamışsa sadece Giriş Yap butonu -->
+    <button
+      *ngIf="!isLoggedIn"
+      class="btn-login"
+      (click)="navigateTo('/login')"
+    >
+      {{ 'navbar.login' | translate }}
+    </button>
+
+    <!-- Giriş yapılmışsa profil ikonu ve menü -->
+    <div
+      *ngIf="isLoggedIn"
+      class="profile-menu-container"
+      (click)="toggleMenu()"
+      tabindex="0"
+      (blur)="isMenuOpen = false"
+    >
+      <i
+        class="fas fa-user profile-icon"
+        title="{{ 'navbar.profile' | translate }}"
+      ></i>
+      <div class="dropdown-menu" *ngIf="isMenuOpen">
+        <a (click)="navigateTo('/profile')">
+          👤 {{ 'navbar.profile' | translate }}
+        </a>
+        <a (click)="navigateTo('/conversations')">💬 {{ 'navbar.my_messages' | translate }}</a>
+        <a (click)="logout()">
+          🔒 {{ 'profile.logout_button' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

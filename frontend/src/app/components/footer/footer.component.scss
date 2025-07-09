@@ -1,0 +1,45 @@
+/* === Genel Ayarlar === */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; 
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Ana Kapsayıcı === */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+  padding-bottom: 80px;
+}
+
+/* === Footer === */
+.footer {
+  background-color: #666;
+  color: #fff;
+  padding: 20px 40px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* === Footer: İletişim Bilgileri === */
+.contact-info {
+  text-align: left;
+}
+
+/* === Footer: Telif Hakkı === */
+.copyright {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #aaa;
+}

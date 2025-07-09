@@ -1,0 +1,32 @@
+<div class="premium-page">
+  <h2>{{ 'premium.title' | translate }}</h2>
+  <p>{{ 'premium.description' | translate }}</p>
+
+  <div class="premium-card">
+    <h3>{{ 'premium.cardTitle' | translate }}</h3>
+    <ul class="premium-benefits">
+      <li>
+        <strong>✔️</strong> {{ 'premium.benefit1' | translate }}
+      </li>
+      <li>
+        <strong>✔️</strong> {{ 'premium.benefit2' | translate }}
+      </li>
+      <li>
+        <strong>✔️</strong> {{ 'premium.benefit3' | translate }}
+      </li>
+      <li>
+        <strong>✔️</strong> {{ 'premium.benefit4' | translate }}
+      </li>
+    </ul>
+  </div>
+
+  <button
+    (click)="becomePremium()"
+    [disabled]="loading"
+    class="premium-cta"
+  >
+    {{ loading
+       ? ( 'premium.loading' | translate )
+       : ( 'premium.button'  | translate ) }}
+  </button>
+</div>

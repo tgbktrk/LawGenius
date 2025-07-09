@@ -1,0 +1,29 @@
+<div class="chat-window">
+  <!-- Mesajları listeleyen alan -->
+  <div #scrollContainer class="messages">
+    <div
+      *ngFor="let msg of messages"
+      [ngClass]="{ 'mine': isMine(msg), 'theirs': !isMine(msg) }"
+      class="message"
+    >
+      <!-- Mesaj içeriği -->
+      <div class="content">{{ msg.content }}</div>
+
+      <!-- Mesajın gönderildiği saat -->
+      <div class="timestamp">{{ msg.createdAt | date:'shortTime' }}</div>
+    </div>
+  </div>
+
+  <!-- Mesaj yazma ve gönderme alanı -->
+  <form (ngSubmit)="send()" class="input-area">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      name="newMessage"
+      placeholder="Mesaj yazın..."
+      autocomplete="off"
+      required
+    />
+    <button type="submit">Gönder</button>
+  </form>
+</div>

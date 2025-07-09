@@ -1,0 +1,19 @@
+<h3>Onay Bekleyen Avukatlar</h3>
+
+<div *ngIf="pendingLawyers.length === 0" class="empty-state">
+  <p>Onay bekleyen avukat başvurusu bulunmamaktadır.</p>
+</div>
+
+<div class="cards-grid pending-grid">
+  <div 
+    *ngFor="let lawyer of pendingLawyers" 
+    class="card pending-card"
+    (click)="goToDetail(lawyer)">
+    <p><strong>Ad:</strong> {{ lawyer.userId?.name }}</p>
+    <p><strong>Baro:</strong> {{ lawyer.barAssociation }}</p>
+    <p><strong>Uzmanlık:</strong> {{ lawyer.expertiseAreas[0] | translate }}</p>
+    <div class="action-buttons">
+      <button class="detail">Detay</button>
+    </div>
+  </div>
+</div>

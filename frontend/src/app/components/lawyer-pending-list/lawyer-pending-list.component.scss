@@ -1,0 +1,64 @@
+.cards-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin: 1.5rem 0;
+}
+
+.card {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+  p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #2b2b2b;
+
+    strong {
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+  }
+
+  .action-buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #333;
+      color: #fff;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #111;
+      }
+    }
+  }
+}
+
+.pending-card {
+  border: 2px dashed #ccc;
+}
+
+.empty-state {
+  text-align: center;
+  color: #777;
+  margin: 2rem 0;
+}

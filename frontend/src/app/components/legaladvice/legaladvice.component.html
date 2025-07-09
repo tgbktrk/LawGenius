@@ -1,0 +1,60 @@
+<!-- Filtreleme Alanı -->
+<div class="filter-container">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    [placeholder]="'legal_advice.search_placeholder' | translate"
+    class="search-bar"
+  />
+
+  <select [(ngModel)]="selectedExpertise" class="expertise-select">
+    <option value="">{{ 'legal_advice.all_expertise' | translate }}</option>
+    <option *ngFor="let area of allExpertiseAreas" [value]="area">
+      {{ area | translate }}
+    </option>
+  </select>
+</div>
+
+<!-- Sayı Bilgisi -->
+<p *ngIf="filteredLawyers.length === 0">{{ 'legal_advice.no_lawyer_found' | translate }}</p>
+<p *ngIf="filteredLawyers.length > 0" class="lawyer-count">
+  {{ 'legal_advice.lawyer_count' | translate:{ count: filteredLawyers.length } }}
+</p>
+
+<!-- Kartlar -->
+<div class="legal-advice-container">
+  <div class="card-grid">
+    <div class="card" *ngFor="let lawyer of filteredLawyers">
+      <div class="card-header">
+        <h3>
+          <ng-container *ngIf="lawyer.expertiseAreas?.length > 0; else noExpertise">
+            <ng-container *ngFor="let area of lawyer.expertiseAreas; let last = last">
+              {{ area | translate }}<span *ngIf="!last">, </span>
+            </ng-container>
+          </ng-container>
+          <ng-template #noExpertise>{{ 'legal_advice.default_expertise' | translate }}</ng-template>
+        </h3>
+      </div>
+      <div class="card-body">
+        <img
+          [src]="'http://localhost:3000/' + lawyer.profilePhoto"
+          [alt]="lawyer.userId.name"
+          class="card-image"
+        />
+        <h4>{{ lawyer.userId.name }}</h4>
+        <p class="location">
+          📍 {{ lawyer.location?.city }}<span *ngIf="lawyer.location?.district"> / {{ lawyer.location?.district }}</span>
+        </p>
+      </div>
+      <div class="card-footer">
+        
+<!-- ngFor içindeki lawyer nesnesini komple geçiriyoruz -->
+<button
+  class="contact-button"
+  (click)="startConversation(lawyer)">
+  {{ 'legal_advice.contact_button' | translate }}
+</button>
+      </div>
+    </div>
+  </div>
+</div>

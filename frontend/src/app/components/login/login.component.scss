@@ -1,0 +1,161 @@
+.login-card {
+  width: 100%;
+  max-width: 500px;
+  margin: 60px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+}
+          
+.login-card h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+          
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+          
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+          
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #000;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 10px;
+}
+          
+.forgot-password a {
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+          
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+          
+button[type="submit"] {
+  background-color: #000;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #1a1a1a;
+  transform: scale(1.02);
+}
+          
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+          
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+          
+.form-footer p {
+  font-size: 14px;
+}
+          
+.form-footer a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+          
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.eye-button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-button svg {
+  width: 24px;
+  height: 24px;
+  fill: #555;
+}
+
+.error-box {
+  background-color: #ffe5e5;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.login-warning {
+  background-color: #ffe0e0;
+  border: 1px solid #ff5c5c;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  color: #800000;
+  font-weight: bold;
+  text-align: center;
+}

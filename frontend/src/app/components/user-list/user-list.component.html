@@ -1,0 +1,21 @@
+<h3>Kayıtlı Kullanıcılar</h3>
+
+<!-- users dizisi gelmedi veya uzunluğu 0 ise boş-state göster -->
+<div *ngIf="!users || users.length === 0" class="empty-state">
+  <p>Hiç kullanıcı bulunamadı.</p>
+</div>
+
+<!-- users varsa kart ızgarasını göster -->
+<div *ngIf="users && users.length > 0" class="cards-grid">
+  <div *ngFor="let user of users" class="card user-card">
+    <p><strong>Ad:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Telefon:</strong> {{ user.phone }}</p>
+
+    <div class="action-buttons">
+      <button class="detail" (click)="goToDetail(user._id)">
+        Detay
+      </button>
+    </div>
+  </div>
+</div>
