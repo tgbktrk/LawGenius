@@ -1,8 +1,68 @@
-node_modules
-dist
-.angular
-.DS_Store
-.vscode
+# =============================================
+# 🌐 FRONTEND (Angular)
+# =============================================
+/dist
+/tmp
+/out-tsc
+/.angular/cache
+
+# Angular CLI test coverage
+/coverage
+
+# Node modules (frontend için)
+/node_modules
+npm-debug.log*
+yarn-error.log*
+
+# =============================================
+# 🔧 BACKEND (Node.js + FastAPI)
+# =============================================
+
+# Ortak modüller
+/backend/node_modules/
+*.log
+
+# Ortak gizli dosyalar
 .env
-backend/.env
-frontend/.env
+.env.*
+**/.env
+
+# FastAPI / Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+venv/
+instance/
+.mypy_cache/
+.pytest_cache/
+
+# Uvicorn log dosyaları (FastAPI için)
+/*.log
+
+# =============================================
+# 🖥️ IDE / Sistem Dosyaları
+# =============================================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Diğer editörler
+.idea/
+.history/
+*.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
