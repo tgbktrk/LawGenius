@@ -19,11 +19,11 @@ FinalThesis/
 
 ## 🚀 Özellikler
 
-- 🤖 AI destekli hukuk danışmanı (OpenAI + Fine-tuned Türkçe hukuk modeli)
-- 👥 Kullanıcılar ile avukatlar arasında özel mesajlaşma sistemi
-- 🔐 JWT ile kimlik doğrulama ve rol tabanlı yetkilendirme
-- 🌐 Çok dilli arayüz (Türkçe ve İngilizce)
-- 📊 Chat geçmişi, konuşma yönetimi, avukat başvuru sistemi
+- AI destekli hukuk danışmanı (OpenAI + Fine-tuned Türkçe hukuk modeli)
+- Kullanıcılar ile avukatlar arasında özel mesajlaşma sistemi
+- JWT ile kimlik doğrulama ve rol tabanlı yetkilendirme
+- Çok dilli arayüz (Türkçe ve İngilizce)
+- Chat geçmişi, konuşma yönetimi, avukat başvuru sistemi
 
 ---
 
