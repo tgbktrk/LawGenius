@@ -155,3 +155,9 @@ node server.js
 - `.env` gibi gizli dosyalar `.gitignore` ile korunmaktadır
 - AI özelliklerini kullanmak için OpenAI API anahtarınızı `.env` dosyasına girmeniz gereklidir
 - Türkçe hukuk modeli ile çalışmak için LoRA ağırlıkları ayrıca yüklenmelidir
+
+---
+
+## 🧑‍💻 Author
+**Tuğba Aktürkk**  
+Computer Engineering Student | Junior Software Developer
