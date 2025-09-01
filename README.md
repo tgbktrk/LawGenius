@@ -158,6 +158,6 @@ node server.js
 
 ---
 
-## 🧑‍💻 Author
+## 👩‍💻 Author
 **Tuğba Aktürk**  
 Computer Engineering Student | Junior Software Developer
